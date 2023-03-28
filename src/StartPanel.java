@@ -9,7 +9,7 @@ import javax.swing.*;
  * @author cody.henrichsen
  * @version 2.1 18/09/2018 Refactored away validation to controller.
  */
-public class StartPanel extends JPanel implements ActionListener {
+public class StartPanel extends JPanel implements ActionListener  {
   /**
    * Reference to the Game to call methods.
    */
@@ -99,8 +99,8 @@ public class StartPanel extends JPanel implements ActionListener {
     celebrityClue = "Enter the clue for the celebrity";
     clueLabel = new JLabel(celebrityClue);
 
-    answerField = new JTextField("Type celebrity here (5 letters min)");
-    clueField = new JTextField("Enter celebrity clue here (8 letters min)");
+    answerField = new JTextField("Type celebrity here (4 letters min)");
+    clueField = new JTextField("Enter celebrity clue here (10 letters min)");
     addCelebrityButton = new JButton("Add current celebrity");
     startButton = new JButton("Start Celebrity game");
     celebrityCount = 0;
@@ -169,7 +169,8 @@ public class StartPanel extends JPanel implements ActionListener {
    * Used to link all Listeners to the associated GUI components.
    */
   private void setupListeners() {
-    
+    addCelebrityButton.addActionListener(this);
+    startButton.addActionListener(this);
   }
 
 
@@ -214,18 +215,24 @@ public class StartPanel extends JPanel implements ActionListener {
     startButton.setEnabled(true);
   }
 
-  public void actionPerformed(Action ae){
-    addCelebrityButton.addActionListener(this);
+  public void actionPerformed(ActionEvent ae){
+    Object source  = ae.getSource();
+    JButton clickedButton = (JButton) source;
+    String buttonText = clickedButton.getText();
     // when "add celebrity" button gets clicked:
-    answerField.setBackground(Color.WHITE);
-    clueField.setBackground(Color.WHITE);
-    if (validate(answerField.getText(), clueField.getText())) {
-      addToGame();
-    } else {
-      invalidInput();
-    }
-    celebrityCount = controller.getCelebrityGameSize();
-    celebrityCountLabel.setText(countLabelText + celebrityCount);
 
+    if(buttonText.equals("Add current celebrity")) {
+      answerField.setBackground(Color.WHITE);
+      clueField.setBackground(Color.WHITE);
+      if (validate(answerField.getText(), clueField.getText())) {
+        addToGame();
+      } else {
+        invalidInput();
+      }
+      celebrityCount = controller.getCelebrityGameSize();
+      celebrityCountLabel.setText(countLabelText + celebrityCount);
+    }else if(buttonText.equals("Start Celebrity game")){
+      controller.play();
+    }
   }
 }
