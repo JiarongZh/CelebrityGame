@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * CelebrityPanel for the game Celebrity
@@ -182,6 +183,7 @@ public class CelebrityPanel extends JPanel implements ActionListener{
     guessButton.addActionListener(this);
     countdownTimer.addActionListener(this);
     countdownTimer.start();
+    resetButton.addActionListener(this);
   }
 
   public void actionPerformed(ActionEvent ae){
@@ -191,6 +193,8 @@ public class CelebrityPanel extends JPanel implements ActionListener{
       String buttonText = clickedButton.getText();
       if(buttonText.equals("Submit guess")){
         updateScreen();
+      } else if(buttonText.equals("Start again")){
+        resetScreen();
       }
     }else if(source instanceof Timer){
       timerFires();
@@ -251,5 +255,16 @@ public class CelebrityPanel extends JPanel implements ActionListener{
       guessButton.setEnabled(true);
       guessField.setEnabled(false);
     }
+  }
+
+  public void resetScreen(){
+    controller.setCelebGameList(new ArrayList<Celebrity>());
+    controller.play();
+    clueArea.setBackground(Color.WHITE);
+    guessField.setEnabled(true);
+    staticTimerLabel.setText("Time Remaining");
+    dynamicTimerLabel.setText();
+    timerFires();
+
   }
 }

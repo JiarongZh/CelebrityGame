@@ -61,6 +61,10 @@ public class CelebrityGame {
 		if(!(celebGameList==null)&&celebGameList.size()>0){
 			gameCelebrity = celebGameList.get(0);
 			gameWindow.replaceScreen("GAME");
+		} else{
+			gameWindow.replaceScreen("START");
+			setCelebGameList(new ArrayList<Celebrity>());
+
 		}
 	}
 
@@ -74,6 +78,7 @@ public class CelebrityGame {
 	public void addCelebrity(String name, String clue, String type) {
 		Celebrity celeb = new Celebrity(name,clue);
 		celebGameList.add(celeb);
+
 	}
 
 	/**
@@ -115,4 +120,10 @@ public class CelebrityGame {
 	public String sendClue() {
 		return gameCelebrity.getClue(); // stub
 	}
+
+	public void setCelebGameList(ArrayList<Celebrity> list){
+		celebGameList = list;
+	}
+
+
 }

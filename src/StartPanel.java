@@ -174,6 +174,8 @@ public class StartPanel extends JPanel implements ActionListener  {
   }
 
 
+
+
   /**
    * Validation method for the text to create a Celebrity object.
    *

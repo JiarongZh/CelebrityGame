@@ -86,5 +86,6 @@ public class CelebrityFrame extends JFrame {
 		CardLayout cardLayout = (CardLayout) layout;
 		cardLayout.show(panelCards, screen);
 
+
 	}
 }
