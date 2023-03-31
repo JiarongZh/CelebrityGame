@@ -125,5 +125,10 @@ public class CelebrityGame {
 		celebGameList = list;
 	}
 
+	public void reset(){
+		celebGameList.clear();
+		gameWindow.reset();
+	}
+
 
 }

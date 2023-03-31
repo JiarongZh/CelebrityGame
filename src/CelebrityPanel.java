@@ -258,13 +258,15 @@ public class CelebrityPanel extends JPanel implements ActionListener{
   }
 
   public void resetScreen(){
-    controller.setCelebGameList(new ArrayList<Celebrity>());
-    controller.play();
+    controller.reset();
     clueArea.setBackground(Color.WHITE);
     guessField.setEnabled(true);
+    guessField.setText("");
+    guessButton.setEnabled(true);
+    clueArea.setText("");
     staticTimerLabel.setText("Time Remaining");
-    dynamicTimerLabel.setText();
-    timerFires();
+    dynamicTimerLabel.setText("60");
+
 
   }
 }
